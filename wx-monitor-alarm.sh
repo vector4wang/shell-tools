@@ -5,22 +5,20 @@ expireTime=7200
 dbFile="db.json"
 
 # "我的企业" 最下面
-corpid=wwa2c2d23053be2f61
+corpid=XXXXXXXXXXXXXx
 
 # "企业应用" 第一行
-agentid="1000002"
+agentid="xxxxxxx"
 
 # "企业应用" 第二行
-corpsecret=-DMGfTqBf4ONuhwx7foF0PpheBpPUWbjLhVKO4xkz9o
+corpsecret=xxxxxxxxxxxxxxxxxxxxxxx
 
 # "通讯录"->"成员详情" 的帐号
-touser="WangXingChao" 
+touser="xxxxxxxxxxxxxxxxxx" 
 
 # "通讯录" 左侧部门最右边的三个点里的ID
-toparty="2"
+toparty="xxxxxxxxxxxxxxxxx"
 
-# "企业应用" 第一行
-agentid="1000002"
 content="服务器快崩了，你还在这里吟诗作对？"
 
 
