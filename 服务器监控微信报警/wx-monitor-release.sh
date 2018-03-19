@@ -15,6 +15,8 @@ content="服务器快崩了，你还在这里吟诗作对？"
 # s 为秒，m 为 分钟，h 为小时，d 为日数  
 interval=1s
 
+cpuCount=`cat /proc/cpuinfo |grep "processor"|wc -l`
+
 ## 发送报警信息
 sendMsg(){
 	if [ ! -f "$dbFile" ];then
@@ -59,16 +61,13 @@ sendMsg(){
 
 loopMonitor(){
     echo 'loop'
-    flag=`uptime | awk '{printf "%.2f\n", $11 "\n"}'`
+    flag=`uptime | awk '{printf "%.2f\n", $10 "\n"}'`
 
-	
-	# 0.7 这个阈值可以视情况而定，如cpu核数为n，则可以设置为0.7 * n  具体视情况而定
-    c=$(echo "$flag > 0.7" | bc)
-
+    c=$(echo "$flag > $cpuCount * 0.8" | bc)
 	echo ">>>>>>>>>>>>>>>>>>`date`<<<<<<<<<<<<<<<<<<"
 	free -m | awk 'NR==2{printf "Memory Usage: %s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }'
 	df -h | awk '$NF=="/"{printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'
-	uptime | awk '{printf "CPU Load: %.2f\n", $11 "\n"}'
+    uptime | awk '{printf "CPU Load: %.2f\n", $10 "\n"}'
 	echo ">>>>>>>>>>>>>>>>>>end<<<<<<<<<<<<<<<<<<"
 	
     if [ $c -eq 1  ];then
